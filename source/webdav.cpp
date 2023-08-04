@@ -5,7 +5,7 @@
 #include <regex>
 #include "curl/curl.h"
 #include "curl/easy.h"
-#include <tinyxml2/tinyxml2.h>
+#include <tinyxml2.h>
 
 using namespace std;
 using namespace tinyxml2;

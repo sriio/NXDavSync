@@ -39,7 +39,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 #---------------------------------------------------------------------------------
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
-SOURCES		:=	source include/inih include/inih/cpp include/tinyxml2
+SOURCES		:=	source include/inih include/inih/cpp
 DATA		:=	data
 INCLUDES	:=	include
 #ROMFS	:=	romfs
@@ -59,7 +59,7 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=$(DEVKITPRO)/libnx/switch.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:= `curl-config --libs`
+LIBS	:= `curl-config --libs` -ltinyxml2
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
