@@ -8,7 +8,7 @@ Nintendo Switch port of [`3DavSync`](https://github.com/szclsya/3DavSync).
 
 ```
 docker pull devkitpro/devkita64:latest
-docker run --rm -v "$PWD":/app -w /app devkitpro/devkita64:latest make
+docker run --rm -v "$PWD":/app -w /app devkitpro/devkita64:latest make TARGET=NXDavSync -j
 ```
 
 ## Configuration
