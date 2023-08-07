@@ -23,6 +23,8 @@ public:
     ~WebDavClient();
     /// Configure this instance to use HTTP simple auth
     void set_basic_auth(std::string username, std::string password);
+    /// Configure the pad state for user confirmation
+    void set_pad_state(PadState *pad);
     /// Make a directory on the remote server
     bool mkcol(std::string web_path_rel, std::optional<u64> mtime);
     /// Push a file to the remote WebDAV collection
@@ -38,10 +40,12 @@ public:
 
 private:
     CURL *curl;
+    PadState *pad;
     std::string web_root; // Base URL
     std::string local_root;
     bool use_basic_auth;
     std::string username;
     std::string password;
     void reset();
+    bool user_confirm();
 };

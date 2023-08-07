@@ -48,6 +48,11 @@ void WebDavClient::set_basic_auth(std::string username, std::string password)
     this->reset();
 }
 
+void WebDavClient::set_pad_state(PadState *pad)
+{
+    this->pad = pad;
+}
+
 string formulate_actual_url(string &root, string &rel_path)
 {
     if (!rel_path.empty())
@@ -448,13 +453,12 @@ vector<pair<string, bool>> recursively_get_dir(string base_path, string ext_path
     return paths;
 }
 
-bool user_confirm()
+bool WebDavClient::user_confirm()
 {
-    PadState pad;
     while (appletMainLoop())
     {
-        padUpdate(&pad);
-        u32 kDown = padGetButtonsDown(&pad);
+        padUpdate(this->pad);
+        u32 kDown = padGetButtonsDown(this->pad);
         if (kDown & HidNpadButton_A)
         {
             return true;
@@ -521,7 +525,7 @@ bool WebDavClient::compareAndUpdate()
                 printf(CONSOLE_YELLOW "Local version newer on above file.\n" CONSOLE_RESET);
                 printf(CONSOLE_YELLOW "Upload (A) or Not (B)?\n" CONSOLE_RESET);
                 consoleUpdate(NULL);
-                if (user_confirm())
+                if (this->user_confirm())
                 {
                     // Upload local version
                     printf("%s: local modified, uploading...\n\n", path.c_str());
@@ -543,7 +547,7 @@ bool WebDavClient::compareAndUpdate()
                 printf(CONSOLE_YELLOW "Download (A) or Not (B)?\n" CONSOLE_RESET);
                 consoleUpdate(NULL);
                 // Pull remote version
-                if (user_confirm())
+                if (this->user_confirm())
                 {
                     printf("%s: remote modified, downloading...\n\n", remote_file.path.c_str());
                     consoleUpdate(NULL);

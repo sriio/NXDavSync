@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
     socketInitializeDefault();
 
     printf(CONSOLE_BLUE "Switch Nexcloud\n\nPress A to start.\n" CONSOLE_RESET);
+    consoleUpdate(NULL);
     while (appletMainLoop())
     {
         padUpdate(&pad);
@@ -42,7 +43,6 @@ int main(int argc, char *argv[])
         {
             break;
         }
-        consoleUpdate(NULL);
     }
 
     INIReader reader("/switch/NXDavSync.ini");
@@ -81,6 +81,7 @@ int main(int argc, char *argv[])
                 {
                     c->set_basic_auth(username, password);
                 }
+                c->set_pad_state(&pad);
                 clients.push_back(make_pair(buf, c));
             }
         }
@@ -133,7 +134,6 @@ int main(int argc, char *argv[])
         {
             break;
         }
-        consoleUpdate(NULL);
     }
 
     socketExit();
