@@ -42,6 +42,9 @@ BUILD		:=	build
 SOURCES		:=	source include/inih include/inih/cpp
 DATA		:=	data
 INCLUDES	:=	include
+APP_TITLE	:= 	NXDavSync
+APP_AUTHOR	:= 	Slany
+APP_VERSION	:= 	0.1.1
 #ROMFS	:=	romfs
 
 #---------------------------------------------------------------------------------
